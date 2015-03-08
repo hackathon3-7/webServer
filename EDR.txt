@@ -1,2 +1,2 @@
-#<name>:<ip>:<description>
-myCam1:192.168.1.122:myDescription1
+#<name>:<ip>:<port>:<description>
+myCam1:192.168.1.122:5566:myDescription1

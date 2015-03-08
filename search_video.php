@@ -5,7 +5,7 @@
 $EDR_FILE = "EDR.txt";
 $DELIMITER = ":";
 $SERVER_IP = "192.168.1.83";
-$VIDEO_NAME= "hpc_portal_demo1.1.mp4";
+$VIDEO_NAME= "video.mp4";
 
 
 
