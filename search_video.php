@@ -4,6 +4,7 @@
 ****************************/
 $EDR_FILE = "EDR.txt";
 $DELIMITER = ":";
+$SERVER_IP = "192.168.1.83";
 
 
 
@@ -44,7 +45,10 @@ function convert_timestamp($date, $time) {
   return $date;
 }
 
+function get_file_path() {
 
+
+}
 
 /****************************
   Main
@@ -63,8 +67,8 @@ foreach ($cameraData as $cam) {
   
   echo "Remote Camera IP: ".$ip.":".$port."<br />";
   echo "Timestamp: ".$timestamp."<br />";
-  echo $_POST['inLat']."<br />";
-  echo $_POST['inLng']."<br />";
+  echo "X: ".$_POST['inLat']."<br />";
+  echo "Y: ".$_POST['inLng']."<br />";
 
   $data = array ("timestamp"  => $timestamp,
                  "inLat" => $_POST['inLat'],
@@ -76,34 +80,30 @@ foreach ($cameraData as $cam) {
   
   if ($socket === false) {
     echo "socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n";
-  } else {
-    echo "OK.\n";
   }
 
-  echo "Attempting to connect to '$ip' on port '$port'...";
+  //echo "Attempting to connect to '$ip' on port '$port'...";
   $result = socket_connect($socket, $ip, $port);
 
   if ($result === false) {
     echo "socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
-  } else {
-    echo "OK.\n";
   }
   
-  echo "Sending HTTP HEAD request...";
+  //echo "Sending HTTP HEAD request...";
   socket_write($socket, $reqData, strlen($reqData));
-  echo "OK.\n";
+  //echo "OK.\n";
   /*
   echo "Reading response:\n\n";
   while ($out = socket_read($socket, 2048)) {
     echo $out;
   }
   */
-  echo "Closing socket...";
+  //echo "Closing socket...";
   socket_close($socket);
-  echo "OK.\n\n";
+  //echo "OK.\n\n";
   
 }
 ?>
 <video width="480" height="320" controls="controls">
-<source src="http://localhost/webServer/hpc_portal_demo1.1.mp4" type="video/mp4">
+<source src="http://<?php echo $SERVER_IP; ?>/webServer/hpc_portal_demo1.1.mp4" type="video/mp4">
 </video>
