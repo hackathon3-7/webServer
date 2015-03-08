@@ -4,6 +4,7 @@
 ****************************/
 $EDR_FILE = "EDR.txt";
 $DELIMITER = ":";
+$PORT = "5566";
 
 
 
@@ -35,17 +36,18 @@ function get_EDR_data() {
 $cameraData = get_EDR_data();
 
 foreach ($cameraData as $cam) {
+  global $PORT;
   $ip          = $cam['ip'];
   $name        = $cam['name'];
   $description = $cam['description'];
   echo $ip."<br />";
-  $data = array("aaaaabbbb");
+  $data = array("aaaaa");
   /*
   $data = array ("timestamp" => $_POST['timestamp'],
                  "lat"       => $_POST['lat'],
                  "lnt"       => $_POST['lnt']);
   */                
-  $ch = curl_init($ip.":5566");
+  $ch = curl_init($ip.":".$PORT);
   curl_setopt_array($ch, array(
     CURLOPT_POST => TRUE,
     CURLOPT_RETURNTRANSFER => TRUE,
