@@ -1,0 +1,98 @@
+.ui-video-control {
+	width: 320px;
+	height: 40px;
+	position: absolute;
+	opacity: .8;
+}
+.ui-video-progress {
+	font-family: monospace;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	font-size: 10px;
+}
+
+.ui-video-mute {
+	position: absolute;
+	left: 10px;
+	top: 5px;
+}
+
+.ui-video-play {
+	position: absolute;
+	left: 150px;
+	top: 5px;
+}
+.ui-video-seek-prev {
+	position: absolute;
+	left: 130px;
+	top: 5px;
+}
+.ui-video-seek-next {
+	position: absolute;
+	left: 170px;
+	top: 5px;
+}
+.ui-video-volume-slider {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	width: 60px;
+}
+.ui-video-scrubber-slider {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	width: 200px;
+}
+
+.ui-video-scrubber-slider-hover {
+	font-family: monospace;
+	position: absolute;
+	font-size: 10px;
+}
+
+.ui-video-scrubber-slider, .ui-video-volume-slider {
+	height: .3em;
+}
+.ui-video-scrubber-slider .ui-slider-handle, .ui-video-volume-slider .ui-slider-handle {
+	width: .6em;
+	height: .4em;
+	top: -.1em;
+	margin-left: -.3em;
+}
+
+.ui-video-buffer-status {
+	position: absolute;
+	width: 0;
+	top: 0;
+	bottom: 0;
+	padding: 0;
+	margin: 0;
+	opacity: .2;
+	background: #000;
+}
+
+.ui-video-spinner {
+	position: absolute;
+	background-image: url("spinner32.png");
+	height: 32px;
+	width: 992px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.ui-video-spinner-container {
+	position: absolute;
+	height: 32px;
+	width: 32px;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	z-index: 9999;
+}
+
+.ui-video-widget {
+	position: relative;
+}
