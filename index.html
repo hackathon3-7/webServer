@@ -104,7 +104,7 @@ function formatter2(obby) {
   <br>
   LatLng︰<input id="inLatLng" name="inLatLng" type="text" size="40" value="" />
   <br>
-  <form name="myform" id="myform" action="post.php" method="POST" data-ajax="false">
+  <form name="myform" id="myform" action="search_video.php" method="POST" data-ajax="false">
 
   Lat︰<input id="inLat" name="inLat" type="text" size="20" value="" />
   <br>
@@ -112,7 +112,7 @@ function formatter2(obby) {
   
   <br><input id="date" name="date" type="text" data-role="datebox" data-options='{"mode":"calbox","closeCallback":"formatter"}' />
   <br><input id="out1" name="epochDate" type="hidden"/>
-  <br><input id="time" name="time" type="text" data-role="datebox" data-options='{"mode":"timeflipbox"}' />
+  <br><input name="time" id="time" type="text" data-role="datebox" data-options='{"mode":"timeflipbox","overrideDateFormat":"%s"}' />
 
   <input type=submit value="寄出">
   </form>

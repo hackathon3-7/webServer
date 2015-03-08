@@ -5,6 +5,7 @@
 $EDR_FILE = "EDR.txt";
 $DELIMITER = ":";
 $SERVER_IP = "192.168.1.83";
+$VIDEO_NAME= "hpc_portal_demo1.1.mp4";
 
 
 
@@ -45,11 +46,6 @@ function convert_timestamp($date, $time) {
   return $date;
 }
 
-function get_file_path() {
-
-
-}
-
 /****************************
   Main
 ****************************/
@@ -65,14 +61,15 @@ foreach ($cameraData as $cam) {
   $time      = $_POST["time"];
   $timestamp = convert_timestamp($date, $time);
   
-  echo "Remote Camera IP: ".$ip.":".$port."<br />";
-  echo "Timestamp: ".$timestamp."<br />";
-  echo "X: ".$_POST['inLat']."<br />";
-  echo "Y: ".$_POST['inLng']."<br />";
+ // echo "Remote Camera IP: ".$ip.":".$port."<br />";
+ // echo "Timestamp: ".$timestamp."<br />";
+ // echo "X: ".$_POST['inLat']."<br />";
+ // echo "Y: ".$_POST['inLng']."<br />";
 
-  $data = array ("timestamp"  => $timestamp,
-                 "inLat" => $_POST['inLat'],
-                 "inLng" => $_POST['inLng']);
+  $data = array ("Type" => "QUERY",
+                 "Time" => $timestamp,
+                 "Lat"  => $_POST['inLat'],
+                 "Lng"  => $_POST['inLng']);
   
   $reqData = json_encode($data);
 
@@ -148,7 +145,7 @@ foreach ($cameraData as $cam) {
 
           <div class="inner cover">
             <video width="480" height="320" controls="controls">
-            <source src="http://<?php echo $SERVER_IP; ?>/webServer/hpc_portal_demo1.1.mp4" type="video/mp4">
+            <source src="http://<?php echo $SERVER_IP; ?>/webServer/<?php echo $VIDEO_NAME; ?>" type="video/mp4">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script src="/package/bootstrap/dist/js/bootstrap.min.js"></script>
             <script src="../../assets/js/docs.min.js"></script>
