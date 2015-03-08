@@ -132,12 +132,11 @@ foreach ($cameraData as $cam) {
           <div class="masthead clearfix">
 
             <div class="inner">
-              <h3 class="masthead-brand">Cover</h3>
+              <h3 class="masthead-brand">全民英雄</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li class="active"><a href="#">主頁</a></li>
+                  <li><a href="#">關於我們</a></li>
                 </ul>
               </nav>
             </div>
