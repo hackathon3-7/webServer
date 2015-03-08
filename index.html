@@ -1,45 +1,106 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
+<link rel="stylesheet" type="text/css" href="http://cdn.jtsage.com/datebox/latest/jqm-datebox.min.css">
+
+
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-<title>Google Maps JavaScript API Example</title>
+<title>Index Site</title>
+<script type="text/javascript" src="http://cdn.jtsage.com/datebox/latest/jqm-datebox.core.min.js"></script>
+
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+
+
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.datebox.min.js"></script>
+
+
+
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAG_4i2swR3KOd-nGYrlrt8RTkyS8SRe_kYPTAbwTumvAqao01PRRUcCtCzTBnNH2kRURGR8RhQQoZ3w"
       type="text/javascript"></script>
 <script type="text/javascript">
 //<![CDATA[
 
+var myMap;
+var myMarker;
+var lat;
+  var lng;
 function load() {
-	if (GBrowserIsCompatible()) {
-		var myMap = new GMap2(document.getElementById("my_map"));
-		var myLatLng = new GLatLng(25.04763902653048, 121.51715755462646);
-		myMap.setCenter(myLatLng, 15);
-		myMap.addControl(new GLargeMapControl());
-		document.getElementById('inLatLng').value = myLatLng.toString();
-		
-		var myMarker = new GMarker( myLatLng );
-		myMap.addOverlay( myMarker );
-		
-		GEvent.addListener(myMap, "click", function( overlay, point ){
-								if(point){
-									//設定標註座標
-									myMarker.setLatLng(point);
-									document.getElementById('inLatLng').value = point.toString();
+  
+  if (GBrowserIsCompatible()) {
+    myMap = new GMap2(document.getElementById("my_map"));
+    var myLatLng = new GLatLng(25.04763902653048, 121.51715755462646);
+    myMap.setCenter(myLatLng, 15);
+    myMap.addControl(new GLargeMapControl());
+    document.getElementById('inLatLng').value = myLatLng.toString();
+    document.getElementById('inLat').value = myLatLng.lat();
+    document.getElementById('inLng').value = myLatLng.lng();    
+    lat=myLatLng.lat();
+    lng=myLatLng.lng();
 
-									
-								}
-							});
+    myMarker = new GMarker( myLatLng );
+    myMap.addOverlay( myMarker );
 
-	}
+    GEvent.addListener(myMap, "click", function( overlay, point ){
+                if(point){
+                  //設定標註座標
+                  myMarker.setLatLng(point);
+                  document.getElementById('inLatLng').value = point.toString();
 
+                  document.getElementById('inLat').value = point.lat();
+                  
+                  document.getElementById('inLng').value = point.lng();
+                  myLatLng=document.getElementById('inLatLng').value;
+                  lat=myLatLng.lat();
+                  lng=myLatLng.lng();
+                }
+              });
+
+
+    
+  }
 }
-var unix = Math.round(+new Date()/1000);
-document.write('time:'+unix+'<br>');
+
+function addressGps() {
+  var myGeocoder = new GClientGeocoder();
+  var address = document.getElementById('address').value;
+  myGeocoder.getLatLng(address, function getRequest( point ){
+              if(!point){
+                alert('這個地址 Google 說不知道！');
+              }else{
+                //移動地圖中心點
+                myMap.panTo( point );
+                //設定標註座標
+                myMarker.setLatLng(point);
+                document.getElementById('inLatLng').value = point.toString();
+                document.getElementById('inLat').value = point.lat();
+                document.getElementById('inLng').value = point.lng();
+              }
+            });
+}
 
 //]]>
 </script>
 </head>
 <body onload="load()" onunload="GUnload()">
-    LatLng︰<input id="inLatLng" name="inLatLng" type="text" size="40" value="" /><p>
-	<div id="my_map" style="width: 500px; height: 500px"></div>
+    Address︰<input id="address" name="address" type="text" size="40" value="臺北市信義區市府路1號" />
+  <input name="button" type="button" value="Search" onclick="javascript:addressGps();" />
+  <br>
+  LatLng︰<input id="inLatLng" name="inLatLng" type="text" size="40" value="" />
+  <br>
+  <form name="myform" id="myform" action="post.php" method="POST">
+  Lat︰<input id="inLat" name="inLat" type="text" size="20" value="" />
+  <br>
+  Lng︰<input id="inLng" name="inLng" type="text" size="20" value="" />
+  
+  <br><input type="text" data-role="datebox" data-options='{"mode":"calbox"}'>
+
+
+  <input type=submit value="寄出">
+  </form>
+  <br>
+  <p>
+  <div id="my_map" style="width: 500px; height: 500px"></div>
+
 </body>
 </html>
