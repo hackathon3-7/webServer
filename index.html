@@ -83,6 +83,18 @@ function addressGps() {
             });
 }
 
+
+function formatter(obby) {
+  var date = obby.date;
+  $('#out1').val(this.callFormat('%s', date));
+}
+
+
+function formatter2(obby) {
+  var date = obby.date;
+  //$('#out1').val(this.callFormat('%s', date));
+}
+
 //]]>
 </script>
 </head>
@@ -98,8 +110,9 @@ function addressGps() {
   <br>
   Lng︰<input id="inLng" name="inLng" type="text" size="20" value="" />
   
-  <br><input id="date" name="date" type="text" data-role="datebox" data-options='{"mode":"calbox"}' />
-
+  <br><input id="date" name="date" type="text" data-role="datebox" data-options='{"mode":"calbox","closeCallback":"formatter"}' />
+  <br><input id="out1" name="epochDate" type="hidden"/>
+  <br><input name="time" id="time" type="text" data-role="datebox" data-options='{"mode":"timeflipbox","overrideDateFormat":"%s"}' />
 
   <input type=submit value="寄出">
   </form>
